@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Arrow, Calendar, Heart, Image, Pin, Trophy, User, Users } from './icons.jsx'
-import { formatDates, formatMoney } from '../data.js'
+import { entryFee, formatDates, formatMoney } from '../data.js'
 import { useAuth } from '../auth.jsx'
 import { photo } from '../photos.js'
 
@@ -16,7 +16,8 @@ export default function TournamentCard({ item, anchor = false, focus = false, wi
   const lng = i18n.resolvedLanguage
   const { requireAuth } = useAuth()
   const [liked, setLiked] = useState(false)
-  const name = t(`tournaments.names.${item.id}`)
+  const name = item.name || t(`tournaments.names.${item.id}`)
+  const fee = entryFee(item)
   const finished = item.status === 'finished'
   const team = item.format === 'team'
 
@@ -29,6 +30,7 @@ export default function TournamentCard({ item, anchor = false, focus = false, wi
       <div className="tcard-media">
         <img {...photo(item.img, wide ? 800 : 420)} loading="lazy" alt={name} />
         <span className={finished ? 'badge badge-done' : 'badge'}>{t(`status.${item.status}`)}</span>
+        {!finished && <span className={fee ? 'fee-tag' : 'fee-tag free'}>{fee ? formatMoney(fee, lng) : t('tpage.facts.free')}</span>}
         <button type="button" className={liked ? 'like on' : 'like'} aria-pressed={liked} aria-label={t('tournaments.save')} onClick={() => requireAuth(() => setLiked(!liked))}>
           <Heart size={16} />
         </button>

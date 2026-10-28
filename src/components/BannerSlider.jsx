@@ -167,7 +167,7 @@ function BrandSlide({ t }) {
         <p className="banner-text">{t('hero.lead')}</p>
         <div className="banner-actions">
           <a href="#tournaments" className="btn btn-lime">{t('header.nav.tournaments')} <Arrow size={16} /></a>
-          <button type="button" className="btn btn-ghost"><Plus size={18} />{t('header.create')}</button>
+          <Link to="/create" className="btn btn-ghost"><Plus size={18} />{t('header.create')}</Link>
         </div>
       </div>
     </>

@@ -8,7 +8,8 @@
     "nav": {
       "tournaments": "Turnirlar",
       "organizers": "Tashkilotchilar",
-      "partners": "Hamkorlik"
+      "partners": "Hamkorlik",
+      "apply": "Ariza qoldirish"
     },
     "nav_label": "Asosiy bo‘limlar",
     "language": "Til",
@@ -101,7 +102,13 @@
     "empty_status": "Bu bo‘limda hozircha turnir yo‘q.",
     "prize": "Sovrin fondi: {{amount}}",
     "players_joined": "{{count}} / {{max}} ishtirokchi",
-    "teams_joined": "{{count}} / {{max}} jamoa"
+    "teams_joined": "{{count}} / {{max}} jamoa",
+    "price_label": "Ishtirok narxi",
+    "prices": {
+      "all": "Hammasi",
+      "free": "Bepul",
+      "paid": "Pullik"
+    }
   },
   "finished": {
     "title": "Turnir tugadi. Tarix qoladi.",
@@ -185,12 +192,12 @@
       "stage1_d": "Har guruhdan 2 kishi o‘tadi",
       "stage2": "2-bosqich",
       "stage2_t": "Pley-off",
-      "stage2_d": "3 partiyagacha, final 5 gacha",
+      "stage2_d": "Yutqazgan chiqib ketadi, final alohida kunda",
       "level": "Daraja",
       "level_t": "Havaskorlar",
       "level_d": "Professional reytingi bo‘lmaganlar",
       "rule1": "Ishtirokchi o‘z o‘yinidan 15 daqiqa oldin kelishi kerak, 10 daqiqa kechiksa texnik mag‘lubiyat.",
-      "rule2": "Jihozlar klubda beriladi, o‘zingiznikini olib kelish mumkin.",
+      "rule2": "Kerakli jihozlar haqida tashkilotchi oldindan xabar beradi.",
       "rule3": "Ro‘yxat yopilgunga qadar bekor qilsangiz, kirish to‘lovi qaytariladi."
     },
     "bracket": {
@@ -309,5 +316,172 @@
         "p": "Nizolar muzokaralar yo‘li bilan, kelishuvga erishilmasa O‘zbekiston Respublikasi qonunchiligiga muvofiq hal etiladi."
       }
     ]
+  },
+  "brand_ad": {
+    "label": "Brend reklamasi",
+    "kicker": "Sport kiyimlari va jihozlar brendlari uchun",
+    "title": "Bu joyda sizning brendingiz bo‘lishi mumkin",
+    "text": "Turnir qidirayotgan minglab sportchilar har kuni shu sahifani ochadi. Yangi kolleksiya, aksiya yoki do‘koningizni ko‘rsating.",
+    "cta": "Joyni band qilish"
+  },
+  "organizer": {
+    "title": "Ishonchli tashkilotchilar",
+    "lead": "Qatnashganlar har bir turnirga baho qo‘yadi va fikr yozadi. Yaxshi tashkilotchini darhol ko‘rasiz.",
+    "kinds": {
+      "club": "Sport klubi",
+      "complex": "Sport majmuasi",
+      "community": "Sport hamjamiyati"
+    },
+    "reviews_one": "{{count}} ta baho",
+    "reviews_other": "{{count}} ta baho",
+    "held": "o‘tkazgan turnir",
+    "open": "ochiq turnir",
+    "profile": "Tarix va baholar",
+    "by": "Tashkilotchi:",
+    "hosted_one": "{{count}} ta turnir o‘tkazgan",
+    "hosted_other": "{{count}} ta turnir o‘tkazgan",
+    "all": "Barcha tashkilotchilar",
+    "verified": "Tasdiqlangan",
+    "since": "KiGo’da {{year}}-yildan",
+    "rating": "Reyting",
+    "reviews_title": "Ishtirokchilar fikrlari",
+    "open_title": "Ochiq turnirlar",
+    "history": "O‘tkazgan turnirlari tarixi",
+    "col_date": "Sana",
+    "col_name": "Turnir",
+    "col_people": "Ishtirokchilar",
+    "col_winner": "G‘olib",
+    "leave": "Baho qoldiring",
+    "leave_note": "Turnirda qatnashgan bo‘lsangiz, tashkilotchiga baho bering. Bu boshqalarga tanlashda yordam beradi.",
+    "which": "Qaysi turnirda qatnashdingiz?",
+    "your_rating": "Bahoyingiz",
+    "your_text": "Fikringiz",
+    "text_ph": "Nima yoqdi, nimani yaxshilash kerak?",
+    "err": "Yulduz bilan baho qo‘ying va fikr yozing.",
+    "send": "Yuborish",
+    "you": "Siz",
+    "samples": {
+      "r1": "Hakamlar adolatli edi, jadval har o‘yindan keyin darhol yangilandi.",
+      "r2": "Tashkiliy ishlar yaxshi. Kiyinish xonasi kichikroq edi, lekin hammasi vaqtida boshlandi.",
+      "r3": "Sovrinlar final kuni topshirildi. Keyingi turnirda yana qatnashamiz.",
+      "r4": "Ro‘yxatdan o‘tish juda oson bo‘ldi, hamma xabar Telegramga keldi.",
+      "r5": "Yaxshi joy va qulay vaqt. O‘yinlar orasidagi tanaffus biroz uzun edi."
+    }
+  },
+  "ads": {
+    "title": "Reklama joylari",
+    "lead": "Brendingizni yoki turniringizni sportchilarga ko‘rsating. Narx va muddat kelishiladi.",
+    "cta": "Reklama berish",
+    "slider": {
+      "title": "Bosh sahifa doskasi",
+      "text": "Sahifa tepasidagi katta karusel. Turnir yoki brend hammadan oldin ko‘rinadi."
+    },
+    "block": {
+      "title": "Brend bloki",
+      "text": "Turnirlar orasidagi keng banner: sport kiyimlari, jihozlar, aksiyalar."
+    },
+    "tournament": {
+      "title": "Turnir homiysi",
+      "text": "Logongiz turnir sahifasida, setkada va natijalarda doim qoladi."
+    }
+  },
+  "host": {
+    "title": "Turnir o‘tkazmoqchimisiz?",
+    "lead": "Ro‘yxat, to‘lov, setka va natijalar bitta joyda. Havolani tarqatasiz, ishtirokchilar o‘zi yoziladi.",
+    "s1": "Ma’lumotlarni kiriting",
+    "s1_d": "Sport, sana, joy, format, sovrin. Ishtirok bepul yoki pullik.",
+    "s2": "To‘lab, e’lon qiling",
+    "s2_d": "Click yoki Payme orqali. Turnir darhol saytda chiqadi.",
+    "s3": "Havolani tarqating",
+    "s3_d": "Telegram, Instagram, guruhlar. Tarix va baholar saqlanib qoladi.",
+    "price_note": "bitta turnir uchun. Obuna yo‘q.",
+    "form_title": "Yoki ariza qoldiring",
+    "form_text": "Universitet, kompaniya yoki klub bo‘lsangiz, turnirni birga tayyorlaymiz.",
+    "company": "Tashkilot",
+    "message": "Qisqacha",
+    "message_ph": "Qachon, nechta ishtirokchi, sovrin bormi",
+    "submit": "Ariza yuborish",
+    "done_title": "Ariza qabul qilindi",
+    "done_text": "Jamoamiz tez orada siz bilan bog‘lanadi."
+  },
+  "register": {
+    "title": "Turnirga yozilish",
+    "done_title": "Siz ro‘yxatdasiz!",
+    "done_text": "«{{name}}» turniriga yozildingiz. Tafsilotlarni telefoningizga yuboramiz.",
+    "invite": "Do‘stlarga havola yuborish",
+    "team": "Jamoa nomi",
+    "pair": "Juftlik nomi",
+    "captain": "Sardor ismi",
+    "name": "Ism, familiya",
+    "err_name": "Ismingizni kiriting",
+    "err_phone": "Telefon raqamini to‘liq kiriting",
+    "err_team": "Nomini kiriting",
+    "agree": "Turnir qoidalari va <offer>ommaviy oferta</offer> bilan tanishdim",
+    "pay": "{{method}} orqali to‘lash · {{fee}}",
+    "submit_free": "Bepul yozilish"
+  },
+  "pay": {
+    "test": "Test rejimi: to‘lov tizimi hali ulanmagan, pul yechilmaydi.",
+    "method": "To‘lov usuli",
+    "click": "Click",
+    "payme": "Payme"
+  },
+  "create": {
+    "yours": "Sizning turniringiz",
+    "title": "Turnir o‘tkazish",
+    "lead": "4 qadam. E’lon qilish narxi: {{fee}}.",
+    "steps_label": "Qadamlar",
+    "step": {
+      "info": "Asosiy",
+      "place": "Sana va joy",
+      "entry": "Ishtirok va sovrin",
+      "review": "E’lon qilish"
+    },
+    "name": "Turnir nomi",
+    "name_ph": "Masalan: Shahar futbol ligasi",
+    "format": "Format",
+    "about": "Turnir haqida",
+    "about_ph": "Kimlar uchun, qanday o‘tadi, nimasi qiziq",
+    "venue": "Klub yoki maydon",
+    "venue_ph": "Masalan: Arena Pro",
+    "address": "Manzil",
+    "address_ph": "Ko‘cha, uy",
+    "max_teams": "Jamoalar soni",
+    "max_players": "Ishtirokchilar soni",
+    "fee": "Kirish to‘lovi, so‘m",
+    "fee_hint": "Ishtirokchilar Click yoki Payme orqali to‘laydi.",
+    "prize": "Sovrin fondi, so‘m",
+    "rules": "Qoidalar",
+    "rules_ph": "O‘yin vaqti, kechikish, bekor qilish shartlari",
+    "contact": "Mas’ul shaxs",
+    "review_note": "E’lon qilingach turnir saytda chiqadi va ro‘yxat ochiladi. Natijalarni keyin o‘zingiz kiritasiz.",
+    "back": "Orqaga",
+    "next": "Davom etish",
+    "publish": "E’lon qilish · {{fee}}",
+    "preview": "Saytda shunday ko‘rinadi",
+    "includes": "Narxga kiradi: turnir sahifasi, ro‘yxat va to‘lov qabul qilish, setka, natijalar, tarix va baholar.",
+    "pay_title": "E’lon qilish",
+    "pay_what": "Turnirni e’lon qilish",
+    "pay_fee_note": "Ishtirokchilar to‘lagan kirish to‘lovlari sizga o‘tkaziladi.",
+    "pay_free_note": "Ishtirok bepul: ishtirokchilar faqat ro‘yxatdan o‘tadi.",
+    "share_text": "«{{name}}» turniriga ro‘yxat ochildi! Yoziling:",
+    "link": "Turnir havolasi",
+    "copy": "Nusxalash",
+    "done_title": "Turniringiz e’lon qilindi!",
+    "done_text": "Havolani tarqating: ishtirokchilar shu sahifadan o‘zi ro‘yxatdan o‘tadi.",
+    "instagram": "Instagram uchun: havolani nusxalab, profil yoki story havolasiga qo‘ying.",
+    "open": "Turnir sahifasini ochish",
+    "boost": "Doskaga chiqarish (reklama)",
+    "err": {
+      "name": "Kamida 3 ta harf",
+      "start": "Boshlanish sanasini tanlang",
+      "end": "Final boshlanishdan keyin bo‘lsin",
+      "deadline": "Ro‘yxat boshlanishdan oldin yopilsin",
+      "venue": "Joyni yozing",
+      "max": "Kamida 2",
+      "fee": "Summani yozing (kamida 1 000)",
+      "contact": "Ismni yozing",
+      "phone": "Telefon raqamini to‘liq kiriting"
+    }
   }
 }
