@@ -3,19 +3,22 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Arrow, SPORT_ICONS } from './icons.jsx'
 import TournamentCard from './TournamentCard.jsx'
-import { NO_FILTERS, ROW_LIMIT, SPORTS, SPORT_ROWS, STATUSES, TOURNAMENTS } from '../data.js'
+import { NO_FILTERS, PRICES, ROW_LIMIT, SPORTS, SPORT_ROWS, STATUSES, TOURNAMENTS, entryFee } from '../data.js'
 
 export default function Tournaments({ filters, setFilters }) {
   const { t } = useTranslation()
   const [status, setStatus] = useState('upcoming')
   const [focus, setFocus] = useState(null)
+  const [price, setPrice] = useState('all')
 
   // Search matches the tournament name in the current language.
   const q = filters.q.trim().toLowerCase()
   const visible = TOURNAMENTS.filter((x) => x.status === status
     && (!q || t(`tournaments.names.${x.id}`).toLowerCase().includes(q))
     && (!filters.city || x.city === filters.city)
-    && (!filters.date || x.end >= filters.date))
+    && (!filters.date || x.end >= filters.date)
+    // Finished tournaments take no entries, so the price filter does not apply to them.
+    && (price === 'all' || x.status === 'finished' || (price === 'free') === (entryFee(x) === 0)))
   // One row per sport: the chosen chip narrows it to a single row.
   const rows = SPORT_ROWS
     .filter((s) => filters.sport === 'all' || filters.sport === s)
@@ -60,10 +63,19 @@ export default function Tournaments({ filters, setFilters }) {
 
       <div className="sec-head">
         <h2>{t('tournaments.title')}</h2>
-        <div className="seg" role="tablist" aria-label={t('tournaments.status_label')}>
-          {STATUSES.map((s) => (
-            <button key={s} type="button" role="tab" aria-selected={status === s} className={status === s ? 'on' : ''} onClick={() => setStatus(s)}>{t(`status.${s}`)}</button>
-          ))}
+        <div className="sec-tools">
+          <div className="seg" role="tablist" aria-label={t('tournaments.status_label')}>
+            {STATUSES.map((s) => (
+              <button key={s} type="button" role="tab" aria-selected={status === s} className={status === s ? 'on' : ''} onClick={() => setStatus(s)}>{t(`status.${s}`)}</button>
+            ))}
+          </div>
+          {status !== 'finished' && (
+            <div className="seg" role="group" aria-label={t('tournaments.price_label')}>
+              {PRICES.map((p) => (
+                <button key={p} type="button" aria-pressed={price === p} className={price === p ? 'on' : ''} onClick={() => setPrice(p)}>{t(`tournaments.prices.${p}`)}</button>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

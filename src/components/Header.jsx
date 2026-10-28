@@ -6,8 +6,9 @@ import { LANGUAGES } from '../i18n.js'
 
 const NAV = [
   { key: 'tournaments', href: '#tournaments' },
-  { key: 'organizers', href: '#cta' },
-  { key: 'partners', href: '#partners' },
+  { key: 'organizers', href: '#organizers' },
+  { key: 'apply', href: '#apply' },
+  { key: 'partners', href: '#ads' },
 ]
 
 export default function Header() {
@@ -33,7 +34,7 @@ export default function Header() {
             options={LANGUAGES.map((l) => ({ value: l.code, label: l.name, short: l.label, lang: l.code }))}
           />
           <button type="button" className="btn btn-line">{t('header.login')}</button>
-          <button type="button" className="btn btn-lime" aria-label={t('header.create')}><Plus size={18} /><span className="btn-label">{t('header.create')}</span></button>
+          <Link to="/create" className="btn btn-lime" aria-label={t('header.create')}><Plus size={18} /><span className="btn-label">{t('header.create')}</span></Link>
         </div>
       </div>
     </header>

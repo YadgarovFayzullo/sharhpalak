@@ -4,7 +4,9 @@ import { useTranslation } from 'react-i18next'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import { Arrow, Calendar, Check, Eye, Pin, Trophy, User, Users } from '../components/icons.jsx'
-import { PARTNER_LOGOS, TOURNAMENTS, bracket, entrants, entryFee, formatDates, formatMoney, locations, registrationDeadline, standings } from '../data.js'
+import { PARTNER_LOGOS, bracket, entrants, entryFee, formatDates, formatMoney, locations, organizerOf, registrationDeadline, standings } from '../data.js'
+import { findTournament } from '../created.js'
+import RegisterDialog from '../components/RegisterDialog.jsx'
 import { Mark } from '../components/Partners.jsx'
 import { fetchViews, trackView, viewsEnabled } from '../views.js'
 import { useSponsor } from '../sponsor.jsx'
@@ -12,9 +14,9 @@ import { photo } from '../photos.js'
 
 const TABS = ['overview', 'players', 'bracket', 'locations', 'results', 'sponsors']
 const MARKED = PARTNER_LOGOS.filter((l) => l.mark) // sponsors drawn as a mark + name
-const SPLIT = [50, 30, 20]
+const SPLIT = [50, 30, 20] // share of the prize fund by place, %
 // What the bracket score counts in each sport; races have no head-to-head score.
-const SCORE_UNIT = { futbol: 'goals', boshqa: 'points', tennis: 'sets', shaxmat: 'games', bilyard: 'games' } // share of the prize fund by place, %
+const SCORE_UNIT = { futbol: 'goals', boshqa: 'points', tennis: 'sets', shaxmat: 'games', bilyard: 'games' }
 
 function Seat({ p, score, win, tbd }) {
   return (
@@ -41,10 +43,11 @@ export default function TournamentPage() {
   const { slug } = useParams()
   const { t, i18n } = useTranslation()
   const lng = i18n.resolvedLanguage
-  const x = TOURNAMENTS.find((c) => c.id === slug)
+  const x = findTournament(slug)
   const [tab, setTab] = useState(null)
   const [copied, setCopied] = useState(false)
   const [views, setViews] = useState(null)
+  const [registering, setRegistering] = useState(false)
   const { openSponsor } = useSponsor()
   useEffect(() => {
     if (!x || !viewsEnabled) return
@@ -52,9 +55,13 @@ export default function TournamentPage() {
     fetchViews(slug).then(setViews, () => {})
     return trackView(slug, setViews)
   }, [slug]) // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (tab) document.getElementById(`tab-${tab}`)?.scrollIntoView({ inline: 'nearest', block: 'nearest' })
+  }, [tab])
   if (!x) return <Navigate to="/tournaments" replace />
 
-  const name = t(`tournaments.names.${x.id}`)
+  const name = x.name || t(`tournaments.names.${x.id}`)
+  const org = organizerOf(x)
   const sportName = t(`sports.${x.sport}`)
   const finished = x.status === 'finished'
   const upcoming = x.status === 'upcoming'
@@ -81,9 +88,6 @@ export default function TournamentPage() {
     if (tabName) setTab(tabName)
     requestAnimationFrame(() => document.getElementById(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' }))
   }
-  useEffect(() => {
-    if (tab) document.getElementById(`tab-${tab}`)?.scrollIntoView({ inline: 'nearest', block: 'nearest' })
-  }, [tab])
   const onTabKey = (e) => {
     const i = TABS.indexOf(active)
     const n = e.key === 'ArrowRight' ? (i + 1) % TABS.length : e.key === 'ArrowLeft' ? (i + TABS.length - 1) % TABS.length : -1
@@ -106,7 +110,7 @@ export default function TournamentPage() {
     : upcoming
       ? (full
         ? <span className="btn btn-big btn-off" aria-disabled="true">{t('tpage.closed')}</span>
-        : <button type="button" className="btn btn-lime btn-big">{fee ? t('tpage.register', { fee: formatMoney(fee, lng) }) : t('tpage.register_free')} <Arrow size={18} /></button>)
+        : <button type="button" className="btn btn-lime btn-big" onClick={() => setRegistering(true)}>{fee ? t('tpage.register', { fee: formatMoney(fee, lng) }) : t('tpage.register_free')} <Arrow size={18} /></button>)
       : <a href="#tp-tabs" className="btn btn-lime btn-big" onClick={() => setTab('bracket')}>{t('tpage.follow')} <Arrow size={18} /></a>
 
   return (
@@ -124,6 +128,15 @@ export default function TournamentPage() {
               {views != null && <span className="pill pill-views" title={t('tpage.views_hint')}><Eye size={14} />{t('tpage.views', { count: views, formatted: views.toLocaleString(lng) })}</span>}
             </div>
             <h1 className="tp-title">{name}</h1>
+            {org && (
+              <Link to={`/organizer/${org.id}`} className="tp-org-link">
+                <span className="org-mark" aria-hidden="true"><Mark mark={org.mark} size={18} /></span>
+                <span>{t('organizer.by')} <b>{org.name}</b></span>
+                <span className="stars-n">★ {org.rating.toFixed(1)}</span>
+                <span className="tp-org-n">{t('organizer.hosted', { count: org.hosted })}</span>
+              </Link>
+            )}
+            {x.created && <span className="pill">{t('create.yours')}</span>}
             <div className="tp-facts">
               {facts.map((f) => (
                 <div key={f.k} className="tp-fact">
@@ -164,6 +177,8 @@ export default function TournamentPage() {
                       <li><span>{t('tpage.schedule.final')}</span><b>{formatDates(x.end, x.end, lng)}, 19:00</b></li>
                     </ul>
                   </div>
+                  {x.about && <p className="tp-about">{x.about}</p>}
+                  {x.rules && <p className="tp-about">{x.rules}</p>}
                   <h2>{t('tpage.overview.title')}</h2>
                   <div className="tp-steps">
                     {['stage1', 'stage2', 'level'].map((k) => (
@@ -285,6 +300,7 @@ export default function TournamentPage() {
         </div>
       </main>
       <Footer />
+      {registering && <RegisterDialog x={x} name={name} fee={fee} onClose={() => setRegistering(false)} />}
     </div>
   )
 }

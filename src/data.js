@@ -15,6 +15,12 @@ export const ROW_LIMIT = 3
 
 export const NO_FILTERS = { q: '', sport: 'all', city: '', date: '' }
 
+// Entry fee filter on the landing: every tournament, free ones, paid ones.
+export const PRICES = ['all', 'free', 'paid']
+
+/** What organizers pay to publish one tournament (so‘m). */
+export const PUBLISH_FEE = 20000
+
 export const CITIES = ['tashkent', 'samarkand', 'bukhara', 'namangan', 'online']
 
 export const STATUSES = ['upcoming', 'live', 'finished']
@@ -22,7 +28,7 @@ export const STATUSES = ['upcoming', 'live', 'finished']
 // start/end: ISO dates; city and format are translation keys. Order = order inside a sport row.
 export const TOURNAMENTS = [
   { id: 'tennis-open', sport: 'tennis', status: 'upcoming', format: 'doubles', start: '2026-11-12', end: '2026-11-14', city: 'tashkent', img: 'tennis', max: 32, joined: 18, prize: 8000000 },
-  { id: 'tennis-juniors', sport: 'tennis', status: 'upcoming', format: 'singles', start: '2026-11-22', end: '2026-11-23', city: 'samarkand', img: 'tennis2', max: 24, joined: 9, prize: 3000000 },
+  { id: 'tennis-juniors', fee: 0, sport: 'tennis', status: 'upcoming', format: 'singles', start: '2026-11-22', end: '2026-11-23', city: 'samarkand', img: 'tennis2', max: 24, joined: 9, prize: 3000000 },
   { id: 'tennis-masters', sport: 'tennis', status: 'upcoming', format: 'doubles', start: '2026-12-09', end: '2026-12-12', city: 'tashkent', img: 'tennis3', max: 16, joined: 11, prize: 15000000 },
   { id: 'tennis-yoz', sport: 'tennis', status: 'live', format: 'singles', start: '2026-10-23', end: '2026-10-28', city: 'namangan', img: 'tennis4', max: 32, joined: 32, prize: 6000000 },
   { id: 'tennis-bahor', sport: 'tennis', status: 'finished', format: 'doubles', start: '2026-04-10', end: '2026-04-12', city: 'tashkent', img: 'tennis2', players: 48, winner: 'Aliyev / Karimov' },
@@ -31,14 +37,14 @@ export const TOURNAMENTS = [
   { id: 'futbol-7x7', sport: 'futbol', status: 'upcoming', format: 'team', start: '2026-12-19', end: '2026-12-20', city: 'samarkand', img: 'football3', max: 16, joined: 5, prize: 10000000 },
   { id: 'futbol-kuz', sport: 'futbol', status: 'live', format: 'team', start: '2026-10-17', end: '2026-11-01', city: 'tashkent', img: 'football4', max: 8, joined: 8, prize: 12000000 },
   { id: 'futbol-bahor', sport: 'futbol', status: 'finished', format: 'team', start: '2026-05-02', end: '2026-05-10', city: 'bukhara', img: 'football2', teams: 16, players: 192, winner: 'Navbahor' },
-  { id: 'shaxmat-kubogi', sport: 'shaxmat', status: 'upcoming', format: 'singles', start: '2026-11-20', end: '2026-11-21', city: 'samarkand', img: 'chess', max: 64, joined: 32, prize: 5000000 },
-  { id: 'shaxmat-blits', sport: 'shaxmat', status: 'upcoming', format: 'singles', start: '2026-12-01', end: '2026-12-01', city: 'online', img: 'chess2', max: 100, joined: 47, prize: 2000000 },
+  { id: 'shaxmat-kubogi', fee: 0, sport: 'shaxmat', status: 'upcoming', format: 'singles', start: '2026-11-20', end: '2026-11-21', city: 'samarkand', img: 'chess', max: 64, joined: 32, prize: 5000000 },
+  { id: 'shaxmat-blits', fee: 0, sport: 'shaxmat', status: 'upcoming', format: 'singles', start: '2026-12-01', end: '2026-12-01', city: 'online', img: 'chess2', max: 100, joined: 47, prize: 2000000 },
   { id: 'shaxmat-yoshlar', sport: 'shaxmat', status: 'finished', format: 'singles', start: '2026-06-14', end: '2026-06-15', city: 'tashkent', img: 'chess3', players: 64, winner: 'D. Rahimov' },
   { id: 'shahar-yugurishi', sport: 'yugurish', status: 'upcoming', format: 'singles', start: '2026-11-27', end: '2026-11-27', city: 'bukhara', img: 'marathon', max: 500, joined: 214, prize: 10000000 },
-  { id: 'tong-yugurishi', sport: 'yugurish', status: 'upcoming', format: 'singles', start: '2026-12-13', end: '2026-12-13', city: 'tashkent', img: 'marathon2', max: 300, joined: 96, prize: 6000000 },
+  { id: 'tong-yugurishi', fee: 0, sport: 'yugurish', status: 'upcoming', format: 'singles', start: '2026-12-13', end: '2026-12-13', city: 'tashkent', img: 'marathon2', max: 300, joined: 96, prize: 6000000 },
   { id: 'marafon-kuz', sport: 'yugurish', status: 'finished', format: 'singles', start: '2026-09-20', end: '2026-09-20', city: 'samarkand', img: 'marathon3', players: 520, winner: 'B. Tursunov' },
   { id: 'suzish-kubogi', sport: 'suzish', status: 'live', format: 'singles', start: '2026-10-24', end: '2026-10-27', city: 'tashkent', img: 'swim', max: 80, joined: 80, prize: 7000000 },
-  { id: 'suzish-yoshlar', sport: 'suzish', status: 'upcoming', format: 'singles', start: '2026-11-29', end: '2026-11-30', city: 'tashkent', img: 'swim2', max: 60, joined: 22, prize: 4000000 },
+  { id: 'suzish-yoshlar', fee: 0, sport: 'suzish', status: 'upcoming', format: 'singles', start: '2026-11-29', end: '2026-11-30', city: 'tashkent', img: 'swim2', max: 60, joined: 22, prize: 4000000 },
   { id: 'suzish-yoz', sport: 'suzish', status: 'finished', format: 'singles', start: '2026-07-18', end: '2026-07-19', city: 'namangan', img: 'swim3', players: 86, winner: 'S. Ismoilova' },
   { id: 'bilyard-open', sport: 'bilyard', status: 'upcoming', format: 'singles', start: '2026-11-14', end: '2026-11-16', city: 'tashkent', img: 'billiards2', max: 32, joined: 20, prize: 5000000 },
   { id: 'pirat-cup', sport: 'bilyard', status: 'upcoming', format: 'singles', start: '2026-11-12', end: '2026-11-14', city: 'tashkent', img: 'billiards3', max: 64, joined: 32, prize: 5000000 },
@@ -104,22 +110,46 @@ export function formatMoney(n, lng) {
 
 // ---- Tournament page (sample content until it comes from the backend) ----
 
-/** Organizer (a club or a company) and how many tournaments it has hosted, by sport. */
-export const ORGANIZERS = {
-  tennis: { name: 'Olimp Courts', hosted: 8 },
-  futbol: { name: 'Arena Pro', hosted: 12 },
-  shaxmat: { name: 'Chess Club Tashkent', hosted: 5 },
-  yugurish: { name: 'RunTashkent', hosted: 9 },
-  suzish: { name: 'Aqua Plus', hosted: 4 },
-  bilyard: { name: 'Pirat', hosted: 6 },
-  boshqa: { name: 'Streetball Park', hosted: 3 },
+/** Organizers (a club or a company): rating from participants' reviews, tournaments hosted, since when on KiGo. */
+export const ORGS = [
+  { id: 'olimp-courts', sport: 'tennis', name: 'Olimp Courts', kind: 'club', city: 'tashkent', since: 2025, hosted: 8, rating: 4.9, reviews: 156, mark: 'tri' },
+  { id: 'arena-pro', sport: 'futbol', name: 'Arena Pro', kind: 'complex', city: 'tashkent', since: 2025, hosted: 12, rating: 4.8, reviews: 214, mark: 'hex' },
+  { id: 'chess-club', sport: 'shaxmat', name: 'Chess Club Tashkent', kind: 'club', city: 'tashkent', since: 2025, hosted: 5, rating: 4.6, reviews: 61, mark: 'circle' },
+  { id: 'runtashkent', sport: 'yugurish', name: 'RunTashkent', kind: 'community', city: 'tashkent', since: 2025, hosted: 9, rating: 4.8, reviews: 302, mark: 'bolt' },
+  { id: 'aqua-plus', sport: 'suzish', name: 'Aqua Plus', kind: 'club', city: 'tashkent', since: 2026, hosted: 4, rating: 4.7, reviews: 44, mark: 'wave' },
+  { id: 'pirat', sport: 'bilyard', name: 'Pirat', kind: 'club', city: 'tashkent', since: 2025, hosted: 6, rating: 4.7, reviews: 98, mark: 'ring' },
+  { id: 'streetball-park', sport: 'boshqa', name: 'Streetball Park', kind: 'community', city: 'tashkent', since: 2026, hosted: 3, rating: 4.5, reviews: 27, mark: 'bars' },
+]
+
+/** Organizer of a tournament (sample: one organizer per sport until the backend sends the real one). */
+export const ORGANIZERS = Object.fromEntries(ORGS.map((o) => [o.sport, o]))
+// A tournament made on this site belongs to its author, not to a sample organizer.
+export const organizerOf = (x) => (x.created ? null : (x.org ? ORGS.find((o) => o.id === x.org) : ORGANIZERS[x.sport]) || null)
+
+// Sample reviews: [author, stars, text key]. Text lives in the locales under organizer.samples.
+const SAMPLE_REVIEWS = [['Jasur K.', 5, 'r1'], ['Bobur O.', 4, 'r2'], ['Sardor N.', 5, 'r3'], ['Malika R.', 5, 'r4'], ['Timur A.', 4, 'r5']]
+
+/** Reviews of an organizer, each tied to one of its finished tournaments. */
+export function reviewsOf(org) {
+  const done = TOURNAMENTS.filter((x) => x.sport === org.sport && x.status === 'finished')
+  return SAMPLE_REVIEWS.map(([who, stars, key], i) => ({ who, stars, key, tournament: done.length ? done[i % done.length].id : null }))
 }
 
-/** Sample entry fee: 1% of the prize fund, rounded to 10 000 (Pirat Cup: 50 000, as in the design). */
-export const entryFee = (x) => Math.round((x.prize || 0) / 100 / 10000) * 10000
+/** Share of 5…1 star ratings for an organizer (sample split that matches its average). */
+export function ratingSplit(org) {
+  const five = Math.round(org.reviews * (org.rating - 4) * 0.95)
+  const four = Math.round((org.reviews - five) * 0.75)
+  const three = Math.round((org.reviews - five - four) * 0.6)
+  const two = Math.round((org.reviews - five - four - three) * 0.6)
+  return [five, four, three, two, org.reviews - five - four - three - two]
+}
+
+/** Entry fee: `fee` when set (0 = free), else the sample rule 1% of the prize fund rounded to 10 000 (Pirat Cup: 50 000). */
+export const entryFee = (x) => x.fee ?? Math.round((x.prize || 0) / 100 / 10000) * 10000
 
 /** Registration closes two days before the start. */
 export function registrationDeadline(x) {
+  if (x.deadline) return x.deadline
   const d = new Date(`${x.start}T12:00:00`)
   d.setDate(d.getDate() - 2)
   return [d.getFullYear(), String(d.getMonth() + 1).padStart(2, '0'), String(d.getDate()).padStart(2, '0')].join('-')
@@ -137,6 +167,7 @@ export const SAMPLE_TEAMS = [
 
 /** Up to eight entrants of a tournament. For a finished one the winner is first. */
 export function entrants(x) {
+  if (x.created) return [] // a new tournament has nobody yet
   const pool = x.format === 'team' ? SAMPLE_TEAMS : SAMPLE_PLAYERS
   const list = pool.map(([i, name, r, bg]) => ({ i, name, r, bg }))
   if (x.winner) {
@@ -177,6 +208,7 @@ const VENUE_STREETS = ['Amir Temur ko‘chasi 108', 'Mustaqillik ko‘chasi 14',
 
 /** Venues of a tournament: [{ name, address, role: 'main' | 'extra', tables }]. */
 export function locations(x) {
+  if (x.created) return x.venue || x.address ? [{ name: x.venue || x.address, address: x.address || x.venue, role: 'main', n: 1 }] : []
   const org = ORGANIZERS[x.sport]
   const n = x.id.length
   const list = [{ name: org.name, address: VENUE_STREETS[n % 4], role: 'main', n: 4 + (n % 5) }]

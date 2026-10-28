@@ -5,6 +5,10 @@ import Tournaments from '../components/Tournaments.jsx'
 import Finished from '../components/Finished.jsx'
 import Partners, { PartnersStrip } from '../components/Partners.jsx'
 import Cta from '../components/Cta.jsx'
+import BrandAd from '../components/BrandAd.jsx'
+import Organizers from '../components/Organizers.jsx'
+import HostSection from '../components/HostSection.jsx'
+import AdFormats from '../components/AdFormats.jsx'
 import Footer from '../components/Footer.jsx'
 import { NO_FILTERS } from '../data.js'
 
@@ -19,7 +23,11 @@ export default function Home() {
         <Hero filters={filters} onSearch={setFilters} />
         <PartnersStrip />
         <Tournaments filters={filters} setFilters={setFilters} />
+        <BrandAd />
         <Finished />
+        <Organizers />
+        <HostSection />
+        <AdFormats />
         <Partners />
         <Cta />
       </main>
